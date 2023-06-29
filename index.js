@@ -6,7 +6,7 @@ var cors=require('cors')
 connectToMongo();
 const app = express()
 // const port = process.env.PORT2||5000
-const BASE_URL=process.env.BASE_URL1
+const BASE_URL=process.env.BASE_URL1||"http://localhost:5000";
 
 
 
