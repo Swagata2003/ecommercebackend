@@ -22,7 +22,7 @@ app.use('/api/orders',require('./routes/order'))
 
 
 app.get('/', (req, res) => {
-  res.send('Hello Swagata!')
+  res.send('Hello Swagata!'+port)
 })
 
 app.listen(port, () => {
