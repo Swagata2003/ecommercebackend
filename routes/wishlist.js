@@ -47,7 +47,7 @@ router.delete("/deletewishitem", fetchuserinfo, async (req, res) => {
         res.status(500).send("Some error occured");
     }
 })
-router.get("/findwishitem", fetchuserinfo, async (req, res) => {
+router.put("/findwishitem", fetchuserinfo, async (req, res) => {
     try {
         const {item}=req.body;
         const items = await wishlistmodel.find({ user: req.id2 });

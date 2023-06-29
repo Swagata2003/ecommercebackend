@@ -69,7 +69,7 @@ router.delete("/deleteitem", fetchuserinfo, async (req, res) => {
         res.status(500).send("Some error occured");
     }
 })
-router.get("/finditem", fetchuserinfo, async (req, res) => {
+router.put("/finditem", fetchuserinfo, async (req, res) => {
     try {
         const {item}=req.body;
         const items = await itemmodel.find({ user: req.id2 });
