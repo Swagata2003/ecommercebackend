@@ -6,7 +6,7 @@ const fetchuserinfo=require('../middleware/fetchuserinfo')
 const bcrypt = require('bcryptjs')
 var jwt=require('jsonwebtoken')
 const User = require('../models/Usermodel')
-var JWT_SECRET="BghvAGC5462HHDJKNDKJkndckjbdchyuewvdhwweoidhwegCf527w012ndklwmdixwh";
+const JWT_SECRET=process.env.JWT_SECRET
 
 
 const router=express.Router()
