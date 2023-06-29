@@ -49,9 +49,9 @@ router.delete("/deletewishitem", fetchuserinfo, async (req, res) => {
 })
 router.get("/findwishitem", fetchuserinfo, async (req, res) => {
     try {
-        const {itemName}=req.query;
+        const {item}=req.body;
         const items = await wishlistmodel.find({ user: req.id2 });
-        const founditem = items.find((ele) => ele.item.name === atob(itemName));
+        const founditem = items.find((ele) => ele.item.name === item.name);
         if (!founditem) {
             res.json({founditem})
         }

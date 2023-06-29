@@ -5,7 +5,8 @@ var cors=require('cors')
 
 connectToMongo();
 const app = express()
-const port = process.env.PORT2||5000
+// const port = process.env.PORT2||5000
+const BASE_URL=process.env.BASE_URL1
 
 
 
@@ -22,9 +23,9 @@ app.use('/api/orders',require('./routes/order'))
 
 
 app.get('/', (req, res) => {
-  res.send('Hello Swagata!'+port)
+  res.send('Hello Swagata!')
 })
 
-app.listen(port, () => {
-  console.log(`e-commerce backend listening on port ${port}`)
+app.listen(BASE_URL, () => {
+  console.log(`e-commerce backend listening at ${BASE_URL}`)
 })

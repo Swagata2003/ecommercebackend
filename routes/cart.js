@@ -71,9 +71,9 @@ router.delete("/deleteitem", fetchuserinfo, async (req, res) => {
 })
 router.get("/finditem", fetchuserinfo, async (req, res) => {
     try {
-        const {itemName}=req.query;
+        const {item}=req.body;
         const items = await itemmodel.find({ user: req.id2 });
-        const founditem = items.find((ele) => ele.item.name === atob(itemName));
+        let founditem = items.find((ele) => ele.item.name === item.name);
         if (!founditem) {
             res.json({founditem,no:0})
         }
