@@ -62,24 +62,20 @@ router.post('/login',[
     body('email','Enter a valid email').isEmail(),
     body('password','Password cannot be empty').exists(),
 ],async(req,res)=>{
-    let success=false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(408).json({ errors: errors.array() });
+        return res.status(400).json({ errors: errors.array() });
     }
     const { email, password } = req.body;
     try{
         let user=await User.findOne({email});
-        let newuser=false;
         if(!user){
-            newuser=true;
-            return res.json({success,newuser});
+            return res.json({success:false,newuser:true});
         }
-        /*bcrypt.compare() function take into account the salt that was used during the hashing process.
-         It internally handles the salt extraction and comparison.*/
+       
         const passwordcomp=await bcrypt.compare(password,user.password);
         if(!passwordcomp){
-            return res.status(400).json({success,error:"Please enter correct credentials"})
+            return res.status(400).json({success:false,error:"Please enter correct credentials"})
         }
         const data={
             user:{
@@ -88,9 +84,8 @@ router.post('/login',[
         }
         
         const authtoken=jwt.sign(data,JWT_SECRET);
-        success=true;
         const name=user.name;
-        res.json({success,authtoken,newuser,name})
+        res.json({success:true,authtoken,newuser:false,name})
 
     }catch(err){
         console.log(err.message)
